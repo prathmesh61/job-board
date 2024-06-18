@@ -6,7 +6,7 @@ const Header = () => {
     <header className="w-full flex flex-col items-center justify-center">
       <div className="w-full flex justify-center items-center bg-base-100 text-white py-2">
         <span className="font-medium text-sm">
-          Get job that’s would right for you
+          Get job that’s would right for you.
         </span>
       </div>
       <nav className="w-full flex items-center justify-around bg-white py-4">
