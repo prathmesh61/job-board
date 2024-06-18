@@ -1,5 +1,6 @@
 import Header from "@/components/base/Header";
 import Hero from "@/components/ui/Hero";
+import Jobs from "@/components/ui/Jobs";
 import React from "react";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <main>
       <Header />
       <Hero />
+      <Jobs />
     </main>
   );
 };

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
-import { LogoIcon } from "@/utils/icon";
+import { ArrowRight, LogoIcon } from "@/utils/icon";
 const Header = () => {
   return (
     <header className="w-full flex flex-col items-center justify-center">
       <div className="w-full flex justify-center items-center bg-base-100 text-white py-2">
-        <span className="font-medium text-sm">
-          Get job that’s would right for you.
+        <span className="font-medium text-sm flex items-center gap-1">
+          Get job that’s would right for you. <ArrowRight className="w-5 h-5" />
         </span>
       </div>
       <nav className="w-full flex items-center justify-around bg-white py-4">
