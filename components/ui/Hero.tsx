@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <section className="w-full h-[50vh]  flex flex-col items-center justify-center gap-6 p-4">
       <h1 className="font-bold text-4xl text-balance text-center ">
-        Find & Hire Top 3% of expert on hi’Jobs.
+        Find & Hire Top 3% of expert on Jobify.
       </h1>
       <p className="text-sm lg:text-lg font-medium max-w-2xl text-center">
         We help you find exciting opportunities around the world. Have the
