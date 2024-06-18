@@ -8,10 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        "pro-sans": ["Product-sans", "system-ui", "ui-sans-serif"],
+      },
+      colors: {
+        "primary-100": "#FEA730",
+        "primary-50": "#FFDBAC",
+        "base-100": "#234238",
+        "base-75": "#589E84",
+        "base-50": "#BCDBCE",
+        "base-25": "#E4F0EC",
       },
     },
   },
