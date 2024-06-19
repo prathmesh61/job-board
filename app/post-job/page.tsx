@@ -1,19 +1,71 @@
 "use client";
 
-import { File } from "buffer";
+import { api } from "@/convex/_generated/api";
+import { create } from "@/convex/database";
+import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-type Props = {};
+type TFormType = {
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  salary: string;
+  description: string;
+  requirements: string;
+  responsibilities: string;
+  companyLogoUrl: string;
+};
+const page = () => {
+  const generateUploadUrl = useMutation(api.database.generateUploadUrl);
+  const posteJob = useMutation(api.database.create);
 
-const page = (props: Props) => {
+  const router = useRouter();
+
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const imageInput = useRef<HTMLInputElement>(null);
 
+  const { handleSubmit, register } = useForm<TFormType>();
+
+  const onSubmit: SubmitHandler<TFormType> = async (data) => {
+    try {
+      // Step 1: Get a short-lived upload URL
+      const postUrl = await generateUploadUrl();
+      // Step 2: POST the file to the URL
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": selectedImage!.type },
+        body: selectedImage,
+      });
+      const { storageId } = await result.json();
+
+      // Step 3: Save the newly allocated storage id to the database
+      await posteJob({
+        title: data.title,
+        company: data.company,
+        companyLogoUrl: storageId,
+        description: data.description,
+        location: data.location,
+        requirements: data.requirements,
+        responsibilities: data.responsibilities,
+        salary: data.salary,
+        type: data.type,
+      });
+      toast.success("successfull");
+      router.push("/");
+    } catch (error) {
+      toast.error("Faild");
+      console.log(error);
+    }
+  };
   return (
     <section>
       <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl">
         <h2 className="text-2xl font-medium mb-4">Job Details</h2>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">
               Job title
@@ -21,7 +73,7 @@ const page = (props: Props) => {
             <input
               type="text"
               placeholder="Software Engineer"
-              name="title"
+              {...register("title", { required: true })}
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             />
@@ -32,9 +84,9 @@ const page = (props: Props) => {
             </label>
             <input
               type="text"
-              name="company"
               placeholder="
 Creative Studios ex."
+              {...register("company", { required: true })}
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             />
@@ -45,7 +97,7 @@ Creative Studios ex."
             </label>
             <input
               type="text"
-              name="location"
+              {...register("location", { required: true })}
               placeholder="New York, NY"
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
@@ -53,12 +105,12 @@ Creative Studios ex."
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">
-              salary
+              salary/yr
             </label>
             <input
               type="text"
-              name="salary"
-              placeholder="$80,000"
+              {...register("salary", { required: true })}
+              placeholder=" ₹50,00,00"
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             />
@@ -70,7 +122,9 @@ Creative Studios ex."
             <input
               type="file"
               accept="image/*"
-              name="companyLogoUrl"
+              ref={imageInput}
+              onChange={(event) => setSelectedImage(event.target.files![0])}
+              disabled={selectedImage !== null}
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             />
@@ -78,7 +132,7 @@ Creative Studios ex."
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Type</label>
             <select
-              name="type"
+              {...register("type", { required: true })}
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             >
@@ -94,7 +148,7 @@ Creative Studios ex."
               description
             </label>
             <textarea
-              name="description"
+              {...register("description", { required: true })}
               placeholder="description"
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               rows={5}
@@ -105,7 +159,7 @@ Creative Studios ex."
               requirements
             </label>
             <textarea
-              name="requirements"
+              {...register("requirements", { required: true })}
               placeholder="requirements of job"
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               rows={5}
@@ -116,7 +170,7 @@ Creative Studios ex."
               responsibilities
             </label>
             <textarea
-              name="responsibilities"
+              {...register("responsibilities", { required: true })}
               placeholder="responsibilities"
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               rows={5}

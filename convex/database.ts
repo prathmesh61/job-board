@@ -1,18 +1,17 @@
 import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-export const postJob = mutation({
+export const create = mutation({
   args: {
     title: v.string(),
     company: v.string(),
     location: v.string(),
     type: v.string(),
     salary: v.string(),
-    storageId: v.id("_storage"),
     description: v.string(),
     requirements: v.string(),
     responsibilities: v.string(),
-    companyLogoUrl: v.string(),
+    companyLogoUrl: v.id("_storage"),
   },
   handler: async (ctx, args) => {
     const {
@@ -23,7 +22,6 @@ export const postJob = mutation({
       requirements,
       responsibilities,
       salary,
-      storageId,
       title,
       type,
     } = args;
@@ -35,7 +33,6 @@ export const postJob = mutation({
       requirements,
       responsibilities,
       salary,
-      storageId,
       title,
       type,
     });
@@ -48,4 +45,8 @@ export const emailSubscribe = mutation({
     const newEmail = await ctx.db.insert("users", { email: args.email });
     return newEmail;
   },
+});
+
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
 });
