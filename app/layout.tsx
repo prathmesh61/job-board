@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "@/provider/ConvexClientProvider";
+import { Toaster } from "react-hot-toast";
+import Header from "@/components/base/Header";
 
 export const metadata: Metadata = {
   title: "Job board",
@@ -15,7 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-pro-sans">
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+        <ConvexClientProvider>
+          <Header />
+          {children}
+          <Toaster />
+        </ConvexClientProvider>
       </body>
     </html>
   );

@@ -6,7 +6,6 @@ import React from "react";
 const Home = () => {
   return (
     <main>
-      <Header />
       <Hero />
       <Jobs />
     </main>

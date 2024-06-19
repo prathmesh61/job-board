@@ -11,10 +11,10 @@ export default defineSchema({
     location: v.string(),
     type: v.string(),
     salary: v.string(),
-
+    storageId: v.id("_storage"),
     description: v.string(),
-    requirements: v.array(v.string()),
-    responsibilities: v.array(v.string()),
+    requirements: v.string(),
+    responsibilities: v.string(),
     companyLogoUrl: v.string(),
   }),
 });

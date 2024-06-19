@@ -3,6 +3,7 @@
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +12,13 @@ const Hero = () => {
     e.preventDefault();
     try {
       await submit({ email });
-      alert("successfull Submit.");
+      toast("successfull!", {
+        icon: "✅",
+      });
     } catch (error: any) {
+      toast("Fail!", {
+        icon: "❌",
+      });
       console.log(error.message);
     }
   };
