@@ -1,4 +1,4 @@
-export const jobListings: TJobListing[] = [
+export const jobListings = [
   {
     id: 1,
     title: "Software Engineer",

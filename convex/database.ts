@@ -1,6 +1,7 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
+// motations
 export const create = mutation({
   args: {
     title: v.string(),
@@ -49,4 +50,20 @@ export const emailSubscribe = mutation({
 
 export const generateUploadUrl = mutation(async (ctx) => {
   return await ctx.storage.generateUploadUrl();
+});
+export const getBlogImage = query({
+  args: { jobId: v.string() },
+  handler: async (ctx, args) => {
+    const job = await ctx.db
+      .query("jobs")
+      .filter((q) => q.eq(q.field("_id"), args.jobId))
+      .first();
+    return await ctx.storage.getUrl(job?.companyLogoUrl!);
+  },
+});
+
+// Query
+
+export const getJobs = query(async (ctx) => {
+  return await ctx.db.query("jobs").take(10);
 });
