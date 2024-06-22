@@ -17,11 +17,20 @@ const Header = () => {
           <Link href={"/find-job"} className="text-lg text-black">
             Find Job
           </Link>
+          <Link href={"/find-recruiter"} className="text-lg text-black">
+            Find Recruiter
+          </Link>
           <Link
             href={"/post-job"}
             className="text-lg text-black bg-primary-100 inline-block px-3 py-1 rounded-md"
           >
             Post Job
+          </Link>
+          <Link
+            href={"/become-recruiter"}
+            className="text-lg text-black bg-primary-100 inline-block px-3 py-1 rounded-md"
+          >
+            Become Recruiter
           </Link>
         </div>
       </nav>

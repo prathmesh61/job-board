@@ -1,5 +1,5 @@
 import { defineSchema, defineTable } from "convex/server";
-import { v } from "convex/values";
+import { Validator, v } from "convex/values";
 
 export default defineSchema({
   users: defineTable({
@@ -15,5 +15,13 @@ export default defineSchema({
     requirements: v.string(),
     responsibilities: v.string(),
     companyLogoUrl: v.id("_storage"),
+  }),
+  recruiters: defineTable({
+    name: v.string(),
+    company: v.string(),
+    email: v.string(),
+    phone: v.number(),
+    companyLogoUrl: v.id("_storage"),
+    jobId: v.string(),
   }),
 });

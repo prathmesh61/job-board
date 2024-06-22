@@ -40,6 +40,29 @@ export const create = mutation({
     return job;
   },
 });
+export const createRecruiterProfile = mutation({
+  args: {
+    name: v.string(),
+    company: v.string(),
+    email: v.string(),
+    phone: v.number(),
+    jobId: v.string(),
+
+    companyLogoUrl: v.id("_storage"),
+  },
+  async handler(ctx, args) {
+    const { company, companyLogoUrl, email, jobId, name, phone } = args;
+    const recruiter = await ctx.db.insert("recruiters", {
+      company,
+      companyLogoUrl,
+      email,
+      jobId,
+      name,
+      phone,
+    });
+    return recruiter;
+  },
+});
 export const emailSubscribe = mutation({
   args: { email: v.string() },
   handler: async (ctx, args) => {
@@ -66,4 +89,15 @@ export const getBlogImage = query({
 
 export const getJobs = query(async (ctx) => {
   return await ctx.db.query("jobs").take(10);
+});
+// Return the last 100 tasks in a given task list.
+export const getjob = query({
+  args: { jobId: v.id("jobs") },
+  handler: async (ctx, args) => {
+    const job = await ctx.db
+      .query("jobs")
+      .filter((q) => q.eq(q.field("_id"), args.jobId))
+      .first();
+    return job;
+  },
 });
