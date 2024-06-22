@@ -12,7 +12,6 @@ type TFormType = {
   company: string;
   email: string;
   phone: number;
-  job: string;
 
   companyLogoUrl: string;
 };
@@ -46,7 +45,6 @@ const page = () => {
         company: data.company,
         companyLogoUrl: storageId,
         email: data.email,
-        jobId: data.job,
         phone: Number(data.phone),
       });
       toast.success("successfull");
@@ -124,21 +122,6 @@ Creative Studios ex."
               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
               required
             />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Job</label>
-            <select
-              {...register("job", { required: true })}
-              className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-              required
-            >
-              <option value="">Select type</option>
-              {jobs?.map((item) => (
-                <option value={item._id} key={item._id}>
-                  {item.title}
-                </option>
-              ))}
-            </select>
           </div>
 
           <div>

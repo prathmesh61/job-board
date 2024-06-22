@@ -2,7 +2,7 @@
 
 import { api } from "@/convex/_generated/api";
 import { create } from "@/convex/database";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,10 +18,12 @@ type TFormType = {
   requirements: string;
   responsibilities: string;
   companyLogoUrl: string;
+  recruiter: string;
 };
 const page = () => {
   const generateUploadUrl = useMutation(api.database.generateUploadUrl);
   const posteJob = useMutation(api.database.create);
+  const recruiters = useQuery(api.database.getRecruiters);
 
   const router = useRouter();
 
@@ -53,6 +55,7 @@ const page = () => {
         responsibilities: data.responsibilities,
         salary: data.salary,
         type: data.type,
+        recruiter: data.recruiter,
       });
       toast.success("successfull");
       router.push("/");
@@ -140,6 +143,27 @@ Creative Studios ex."
               <option value="full-time">full-time</option>
               <option value="part-time">part-time</option>
               <option value="remote">remote</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-2">
+              Recruiter
+            </label>
+            <select
+              {...register("recruiter", { required: true })}
+              className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+              required
+            >
+              <option value="">Select recruiter</option>
+              {recruiters?.length! > 0 ? (
+                recruiters?.map((item) => (
+                  <option value={item._id} key={item._id}>
+                    {item.name}
+                  </option>
+                ))
+              ) : (
+                <option value="no-recruiter">No recruiter</option>
+              )}
             </select>
           </div>
 

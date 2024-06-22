@@ -15,6 +15,7 @@ export default defineSchema({
     requirements: v.string(),
     responsibilities: v.string(),
     companyLogoUrl: v.id("_storage"),
+    recruiter: v.string(),
   }),
   recruiters: defineTable({
     name: v.string(),
@@ -22,6 +23,5 @@ export default defineSchema({
     email: v.string(),
     phone: v.number(),
     companyLogoUrl: v.id("_storage"),
-    jobId: v.string(),
   }),
 });
