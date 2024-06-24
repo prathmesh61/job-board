@@ -1,34 +1,37 @@
-import Link from "next/link";
-import React from "react";
-import { ArrowRight, LogoIcon } from "@/utils/icon";
+import Link from 'next/link';
+import React from 'react';
+import { ArrowRight, LogoIcon } from '@/utils/icon';
 const Header = () => {
   return (
-    <header className="w-full flex flex-col items-center justify-center">
-      <div className="w-full flex justify-center items-center bg-base-100 text-white py-2">
-        <span className="font-medium text-sm flex items-center gap-1">
-          Get job that’s would right for you. <ArrowRight className="w-5 h-5" />
+    <header className='flex w-full flex-col items-center justify-center'>
+      <div className='flex w-full items-center justify-center bg-base-100 py-2 text-white'>
+        <span className='flex items-center gap-1 text-sm font-medium'>
+          Get job that’s would right for you. <ArrowRight className='h-5 w-5' />
         </span>
       </div>
-      <nav className="w-full flex items-center justify-around bg-white py-4">
-        <span className="font-extrabold text-2xl flex items-center gap-1">
-          <LogoIcon className="w-8 h-8" /> Jobify
-        </span>
-        <div className="flex items-center gap-8">
-          <Link href={"/find-job"} className="text-lg text-black">
+      <nav className='flex w-full items-center justify-around bg-white py-4'>
+        <Link
+          href={'/'}
+          className='flex items-center gap-1 text-2xl font-extrabold'
+        >
+          <LogoIcon className='h-8 w-8' /> Jobify
+        </Link>
+        <div className='flex items-center gap-8'>
+          <Link href={'/find-job'} className='text-lg text-black'>
             Find Job
           </Link>
-          <Link href={"/find-recruiter"} className="text-lg text-black">
+          <Link href={'/find-recruiter'} className='text-lg text-black'>
             Find Recruiter
           </Link>
           <Link
-            href={"/post-job"}
-            className="text-lg text-black bg-primary-100 inline-block px-3 py-1 rounded-md"
+            href={'/post-job'}
+            className='inline-block rounded-md bg-primary-100 px-3 py-1 text-lg text-black'
           >
             Post Job
           </Link>
           <Link
-            href={"/become-recruiter"}
-            className="text-lg text-black bg-primary-100 inline-block px-3 py-1 rounded-md"
+            href={'/become-recruiter'}
+            className='inline-block rounded-md bg-primary-100 px-3 py-1 text-lg text-black'
           >
             Become Recruiter
           </Link>

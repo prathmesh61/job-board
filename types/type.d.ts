@@ -11,3 +11,12 @@ type TJobListing = {
   responsibilities: string;
   companyLogoUrl: string;
 };
+type TRecruiter = {
+  _id: string;
+  name: string;
+  company: string;
+  email: string;
+  phone: number;
+  _creationTime: number;
+  companyLogoUrl: string;
+};

@@ -1,5 +1,5 @@
-import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { mutation, query } from './_generated/server';
+import { v } from 'convex/values';
 
 // motations
 export const create = mutation({
@@ -12,7 +12,7 @@ export const create = mutation({
     description: v.string(),
     requirements: v.string(),
     responsibilities: v.string(),
-    companyLogoUrl: v.id("_storage"),
+    companyLogoUrl: v.id('_storage'),
     recruiter: v.string(),
   },
   handler: async (ctx, args) => {
@@ -28,7 +28,7 @@ export const create = mutation({
       type,
       recruiter,
     } = args;
-    const job = await ctx.db.insert("jobs", {
+    const job = await ctx.db.insert('jobs', {
       company,
       companyLogoUrl,
       description,
@@ -51,11 +51,11 @@ export const createRecruiterProfile = mutation({
     email: v.string(),
     phone: v.number(),
 
-    companyLogoUrl: v.id("_storage"),
+    companyLogoUrl: v.id('_storage'),
   },
   async handler(ctx, args) {
     const { company, companyLogoUrl, email, name, phone } = args;
-    const recruiter = await ctx.db.insert("recruiters", {
+    const recruiter = await ctx.db.insert('recruiters', {
       company,
       companyLogoUrl,
       email,
@@ -68,7 +68,7 @@ export const createRecruiterProfile = mutation({
 export const emailSubscribe = mutation({
   args: { email: v.string() },
   handler: async (ctx, args) => {
-    const newEmail = await ctx.db.insert("users", { email: args.email });
+    const newEmail = await ctx.db.insert('users', { email: args.email });
     return newEmail;
   },
 });
@@ -76,12 +76,22 @@ export const emailSubscribe = mutation({
 export const generateUploadUrl = mutation(async (ctx) => {
   return await ctx.storage.generateUploadUrl();
 });
-export const getBlogImage = query({
+export const getJobImage = query({
   args: { jobId: v.string() },
   handler: async (ctx, args) => {
     const job = await ctx.db
-      .query("jobs")
-      .filter((q) => q.eq(q.field("_id"), args.jobId))
+      .query('jobs')
+      .filter((q) => q.eq(q.field('_id'), args.jobId))
+      .first();
+    return await ctx.storage.getUrl(job?.companyLogoUrl!);
+  },
+});
+export const getRecruiterCompanyImage = query({
+  args: { Id: v.string() },
+  handler: async (ctx, args) => {
+    const job = await ctx.db
+      .query('recruiters')
+      .filter((q) => q.eq(q.field('_id'), args.Id))
       .first();
     return await ctx.storage.getUrl(job?.companyLogoUrl!);
   },
@@ -90,18 +100,19 @@ export const getBlogImage = query({
 // Query
 
 export const getJobs = query(async (ctx) => {
-  return await ctx.db.query("jobs").take(10);
+  return await ctx.db.query('jobs').take(10);
 });
+
 export const getRecruiters = query(async (ctx) => {
-  return await ctx.db.query("recruiters").take(10);
+  return await ctx.db.query('recruiters').take(10);
 });
 // Return the last 100 tasks in a given task list.
 export const getjob = query({
-  args: { jobId: v.id("jobs") },
+  args: { jobId: v.id('jobs') },
   handler: async (ctx, args) => {
     const job = await ctx.db
-      .query("jobs")
-      .filter((q) => q.eq(q.field("_id"), args.jobId))
+      .query('jobs')
+      .filter((q) => q.eq(q.field('_id'), args.jobId))
       .first();
     return job;
   },
