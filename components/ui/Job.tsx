@@ -2,7 +2,7 @@ import { api } from '@/convex/_generated/api';
 import { Heart } from '@/utils/icon';
 import { useQuery } from 'convex/react';
 import TimeAgo from 'timeago-react';
-
+import { motion } from 'framer-motion';
 type Props = {
   job: TJobListing;
 };
@@ -11,7 +11,16 @@ const Job = ({ job }: Props) => {
   const companyLogo = useQuery(api.database.getJobImage, { jobId: job._id });
 
   return (
-    <article className='flex items-center justify-between rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-md'>
+    <motion.div
+      initial={{ y: 0 }}
+      animate={{ y: '80px' }}
+      transition={{
+        type: 'spring',
+        stiffness: 260,
+        damping: 20,
+      }}
+      className='flex items-center justify-between rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-md'
+    >
       <div className='flex items-center gap-4'>
         <img
           src={`${companyLogo}`}
@@ -33,7 +42,7 @@ const Job = ({ job }: Props) => {
           <TimeAgo datetime={job._creationTime} locale='in' />
         </h2>
       </div>
-    </article>
+    </motion.div>
   );
 };
 

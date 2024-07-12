@@ -7,9 +7,9 @@ import { api } from '@/convex/_generated/api';
 const Jobs = () => {
   const jobListings = useQuery(api.database.getJobs);
   return (
-    <section className='lg:grid-rows- container mx-auto grid grid-cols-1 grid-rows-1 gap-3 px-4 py-12 lg:grid-cols-2'>
+    <div className='container mx-auto mt-20 grid grid-cols-1 grid-rows-1 gap-3 px-4 py-12 lg:grid-cols-2 lg:grid-rows-2'>
       {jobListings?.map((item) => <Job key={item._id} job={item} />)}
-    </section>
+    </div>
   );
 };
 
