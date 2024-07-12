@@ -3,7 +3,7 @@ import { FeatureIcon } from '@/utils/icon';
 
 const FeatureCard = () => {
   return (
-    <div className='container mx-auto mt-20 flex flex-col items-center justify-center gap-5 px-6 py-16'>
+    <div className='container mx-auto mt-20 flex flex-col items-center justify-center gap-20 px-6 py-16'>
       <h2 className='flex items-center justify-center gap-1 text-4xl font-extrabold'>
         Key Features <FeatureIcon className='w-8 object-cover' />
       </h2>

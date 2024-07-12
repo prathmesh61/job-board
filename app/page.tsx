@@ -1,4 +1,6 @@
+import Footer from '@/components/base/Footer';
 import Header from '@/components/base/Header';
+import FAQ from '@/components/ui/FAQ';
 import FeatureCard from '@/components/ui/FeatureCard';
 import Hero from '@/components/ui/Hero';
 import Jobs from '@/components/ui/Jobs';
@@ -12,6 +14,8 @@ const Home = () => {
       <Jobs />
       <TopCompanies />
       <FeatureCard />
+      <FAQ />
+      <Footer />
     </main>
   );
 };
