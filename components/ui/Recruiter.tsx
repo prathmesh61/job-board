@@ -14,7 +14,7 @@ const Recruiter = ({ item }: Props) => {
   //   console.log(companyLogo);
 
   return (
-    <article className='flex flex-wrap items-center justify-between gap-4 bg-white px-6 py-4'>
+    <article className='flex flex-wrap items-center justify-between gap-4 border border-gray-300 bg-white px-6 py-4 shadow-md'>
       <div className='flex items-center gap-5'>
         <img
           src={`${companyLogo}`}
@@ -28,7 +28,6 @@ const Recruiter = ({ item }: Props) => {
       </div>
       <div className='flex flex-col gap-4'>
         <span className='text-sm font-medium'>Email - {item.email}</span>
-        <span className='text-sm font-medium'>Phone - {item.phone}</span>
       </div>
     </article>
   );

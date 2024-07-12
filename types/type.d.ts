@@ -20,3 +20,15 @@ type TRecruiter = {
   _creationTime: number;
   companyLogoUrl: string;
 };
+type TCompanyList = {
+  src: string;
+  alt: string;
+};
+type TFaq = {
+  question: string;
+  answer: string;
+};
+type TCard = {
+  title: string;
+  content: string;
+};

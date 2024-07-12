@@ -17,23 +17,11 @@ const Header = () => {
           <LogoIcon className='h-8 w-8' /> Jobify
         </Link>
         <div className='flex items-center gap-8'>
-          <Link href={'/find-job'} className='text-lg text-black'>
+          <Link href={'/'} className='text-lg text-black'>
             Find Job
           </Link>
           <Link href={'/find-recruiter'} className='text-lg text-black'>
             Find Recruiter
-          </Link>
-          <Link
-            href={'/post-job'}
-            className='inline-block rounded-md bg-primary-100 px-3 py-1 text-lg text-black'
-          >
-            Post Job
-          </Link>
-          <Link
-            href={'/become-recruiter'}
-            className='inline-block rounded-md bg-primary-100 px-3 py-1 text-lg text-black'
-          >
-            Become Recruiter
           </Link>
         </div>
       </nav>

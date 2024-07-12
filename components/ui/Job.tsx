@@ -11,7 +11,7 @@ const Job = ({ job }: Props) => {
   const companyLogo = useQuery(api.database.getJobImage, { jobId: job._id });
 
   return (
-    <article className='flex items-center justify-between rounded-lg bg-white px-6 py-4'>
+    <article className='flex items-center justify-between rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-md'>
       <div className='flex items-center gap-4'>
         <img
           src={`${companyLogo}`}
