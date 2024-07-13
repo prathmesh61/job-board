@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <section className='flex h-[50vh] w-full flex-col items-center justify-center gap-6 p-4'>
-      <h1 className='text-balance text-center text-4xl font-bold sm:text-5xl'>
+      <h1 className='text-balance text-center text-2xl font-extrabold sm:text-4xl'>
         Find & Hire Top 3% of expert on Jobify.
       </h1>
       <p className='max-w-2xl text-center text-sm font-medium tracking-wide lg:text-lg'>

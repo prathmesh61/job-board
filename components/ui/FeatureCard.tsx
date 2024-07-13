@@ -24,7 +24,7 @@ const FeatureCard = () => {
 
   return (
     <div className='container mx-auto mt-20 flex flex-col items-center justify-center gap-20 px-6 py-16'>
-      <h2 className='flex items-center justify-center gap-1 text-4xl font-extrabold'>
+      <h2 className='flex items-center justify-center gap-1 text-2xl font-extrabold sm:text-4xl'>
         Key Features <FeatureIcon className='w-8 object-cover' />
       </h2>
 
@@ -35,7 +35,10 @@ const FeatureCard = () => {
           style={{ WebkitMaskImage: template, maskImage: template }}
         ></motion.div>
         {card.map((item) => (
-          <div className='flex h-[200px] min-w-80 flex-1 flex-col items-center justify-center gap-5 rounded-lg bg-white px-4 py-2 shadow-md'>
+          <div
+            className='flex h-[200px] min-w-80 flex-1 flex-col items-center justify-center gap-5 rounded-lg bg-white px-4 py-2 shadow-md'
+            key={item.title}
+          >
             <h3 className='text-xl font-bold'>{item.title}</h3>
             <p className='text-center text-base font-normal tracking-wide'>
               {item.content}
