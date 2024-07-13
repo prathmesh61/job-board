@@ -2,7 +2,7 @@
 import { faq } from '@/utils';
 import { AccordianArrowIcon, FAQIcon } from '@/utils/icon';
 import { useState } from 'react';
-
+import { motion, AnimatePresence } from 'framer-motion';
 const Accordian = ({
   question,
   answer,
@@ -21,8 +21,28 @@ const Accordian = ({
         <AccordianArrowIcon className='w-5 object-cover' />
       </div>
       {open && (
-        <p className='text-xs font-normal tracking-wide sm:text-lg'>{answer}</p>
+        <motion.div
+          className='text-sm font-normal tracking-wide sm:text-lg'
+          initial={{
+            opacity: 0,
+            marginTop: 0,
+            height: 0,
+          }}
+          animate={{
+            opacity: 1,
+            marginTop: '16px',
+            height: 'auto',
+          }}
+          exit={{
+            opacity: 0,
+            marginTop: 0,
+            height: 0,
+          }}
+        >
+          {answer}
+        </motion.div>
       )}
+      <AnimatePresence></AnimatePresence>
     </div>
   );
 };
