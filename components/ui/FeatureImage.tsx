@@ -13,7 +13,7 @@ const FeatureImage = () => {
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
   return (
-    <section className='container mx-auto mt-20 flex flex-col items-center px-6 py-16'>
+    <section className='container mx-auto mt-16 flex flex-col items-center px-6 py-16'>
       <div className='flex flex-col items-center gap-2'>
         <h2 className='flex items-center gap-1 text-center text-2xl font-extrabold sm:text-4xl'>
           Your job search starts here
@@ -27,7 +27,7 @@ const FeatureImage = () => {
       <motion.div
         className='flex w-full items-center justify-center'
         style={{
-          transformPerspective: '1000px',
+          transformPerspective: '500px',
           rotateX: rotate,
           opacity,
         }}

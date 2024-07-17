@@ -12,14 +12,14 @@ const Job = ({ job }: Props) => {
 
   return (
     <motion.div
-      initial={{ y: 0 }}
-      animate={{ y: '80px' }}
+      initial={{ y: '-80px' }}
+      animate={{ y: 0 }}
       transition={{
         type: 'spring',
         stiffness: 260,
         damping: 20,
       }}
-      className='flex items-center justify-between rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-md'
+      className='flex flex-wrap items-center justify-between gap-5 rounded-lg border border-gray-300 bg-white px-6 py-4 shadow-md'
     >
       <div className='flex items-center gap-4'>
         <img
@@ -27,16 +27,21 @@ const Job = ({ job }: Props) => {
           alt={job.company}
           className='h-12 w-12 rounded-full bg-transparent object-cover'
         />
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-y-1'>
           <h3 className='text-sm font-medium'>{job.company}</h3>
-          <h2 className='text-xl font-bold'>{job.title}</h2>
+          <h2 className='text-base font-bold sm:text-xl'>{job.title}</h2>
           <div className='flex items-center gap-1'>
-            <span className='text-sm text-gray-500'>Type: {job.type}</span>,
-            <span className='text-sm text-gray-500'>{job.location}</span>
+            <span className='text-xs text-gray-500 sm:text-sm'>
+              Type: {job.type}
+            </span>
+            ,
+            <span className='text-xs text-gray-500 sm:text-sm'>
+              {job.location}
+            </span>
           </div>
         </div>
       </div>
-      <div className='flex flex-col items-end gap-4'>
+      <div className='flex w-full items-end justify-between gap-4'>
         <Heart className='h-5 w-5 fill-gray-300 active:fill-red-500' />
         <h2 className='text-sm text-gray-500'>
           <TimeAgo datetime={job._creationTime} locale='in' />

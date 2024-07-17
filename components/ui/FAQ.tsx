@@ -49,7 +49,7 @@ const Accordian = ({
 
 const FAQ = () => {
   return (
-    <div className='container mx-auto mt-20 px-10 py-16'>
+    <div className='container mx-auto mt-20 px-6 py-16'>
       <div className='flex flex-col items-center justify-center gap-16'>
         <h2 className='flex items-center gap-1 text-center text-2xl font-extrabold sm:text-4xl'>
           FAQ <FAQIcon className='w-8 object-cover' />

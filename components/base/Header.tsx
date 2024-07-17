@@ -12,12 +12,12 @@ const Header = () => {
       <nav className='flex w-full items-center justify-around bg-white py-4'>
         <Link
           href={'/'}
-          className='flex items-center gap-1 text-2xl font-extrabold'
+          className='flex items-center gap-1 text-xl font-extrabold sm:text-2xl'
         >
           <LogoIcon className='h-8 w-8' /> Jobify
         </Link>
         <div className='flex items-center gap-8'>
-          <Link href={'/'} className='text-sm text-black sm:text-lg'>
+          <Link href={'/find-job'} className='text-sm text-black sm:text-lg'>
             Find Job
           </Link>
           <Link
